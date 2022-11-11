@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link taskListFragment#newInstance} factory method to
+ * Use the {@link TaskListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class taskListFragment extends Fragment {
+public class TaskListFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class taskListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public taskListFragment() {
+    public TaskListFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class taskListFragment extends Fragment {
      * @return A new instance of fragment taskListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static taskListFragment newInstance(String param1, String param2) {
-        taskListFragment fragment = new taskListFragment();
+    public static TaskListFragment newInstance(String param1, String param2) {
+        TaskListFragment fragment = new TaskListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
