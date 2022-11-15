@@ -1,18 +1,18 @@
 package com.zybooks.todoit;
-import java.util.*;
+import java.time.*;
 
 public class Task {
     private int mId;
     private String mName;
-    private Calendar mDate;
+    private LocalDate mDate;
 
-
-    public Task(int id, String name, Calendar date) {
+    public Task(){}
+    public Task(int id, String name, LocalDate date) {
         mId = id;
         mName = name;
         mDate = date;
     }
-    public int getId(){
+    public  int getId(){
         return mId;
     }
 
@@ -20,7 +20,7 @@ public class Task {
         this.mId = id;
     }
 
-    public String getName(){
+    public  String getName(){
         return mName;
     }
 
@@ -28,13 +28,25 @@ public class Task {
         this.mName = name;
     }
 
-    public Calendar getDate(){
+    public LocalDate getDate(){
         return mDate;
     }
 
-    public void setDate(Calendar date){
+
+    public void setDate(LocalDate date){
         this.mDate = date;
     }
+
+    @Override
+    public String toString() {
+        String task = new String();
+
+        task = mId +"/" + mDate + "/" + mName;
+        return task;
+
+    }
+
+
 
 
 }
