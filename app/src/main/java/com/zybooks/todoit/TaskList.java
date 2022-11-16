@@ -22,6 +22,7 @@ public class TaskList {
 
     public void addTask(Task task) {
         this.mTasks.add(task);
+        Collections.sort(mTasks, Comparator.comparing(Task::getDate));
     }
 
     public void removeTask(int taskId) {
