@@ -11,7 +11,8 @@ public class TaskList {
     private List<Task> mTasks;
 
 
-    public TaskList() {  // is going to require context like band database
+    public TaskList(Context context) {  // is going to require context like band database
+        mContext = context;
         mTasks = new ArrayList<>();
     }
 
