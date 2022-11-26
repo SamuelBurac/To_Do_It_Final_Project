@@ -2,4 +2,7 @@
     <string name="app_name">To Do It</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="test_title">Task Test Title</string>
+    <string name="test_message">Task bla bla bla</string>
+    <string name="ok">blaa</string>
 </resources>
