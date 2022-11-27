@@ -5,4 +5,6 @@
     <color name="blueberry_900">#0f46a1</color>
     <color name="white">#FFF</color>
     <color name="black">#FF000000</color>
+    <color name="purple_500">#6203fc</color>
+    <color name="teal_200">#32a89b</color>
 </resources>

@@ -9,7 +9,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ToDoList mToDoList;
+    private TaskList mToDoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.clear_button).setOnClickListener(view -> clearButtonClick());
 
-        mToDoList = new ToDoList(this);
+        mToDoList = new TaskList(this);
 
         //sets the on click listener for the fab button; replace the snackbar code with the fab code
         findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         //How to open Dialog box from here?
     }
 
-    @Override
+   // @Override
     public void OnNewTaskClick(){
 
     }
