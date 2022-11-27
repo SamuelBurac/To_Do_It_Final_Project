@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.clear_button).setOnClickListener(view -> clearButtonClick());
+
 
         mToDoList = new TaskList(this);
 
