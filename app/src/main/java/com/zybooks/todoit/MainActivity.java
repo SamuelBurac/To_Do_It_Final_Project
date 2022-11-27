@@ -59,4 +59,17 @@ public class MainActivity extends AppCompatActivity {
     private void clearButtonClick() {
         mToDoList.clear();
     }
+
+
+    public void addButtonClick(View view) {
+        System.out.println("Floating Action Button has been pressed!");
+
+        //How to open Dialog box from here?
+    }
+
+    @Override
+    public void OnNewTaskClick(){
+
+    }
+
 }
