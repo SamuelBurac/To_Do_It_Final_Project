@@ -31,6 +31,6 @@
         tools:layout_editor_absoluteY="656dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:contentDescription="something for now"/>
+        android:contentDescription="@string/new_task"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
