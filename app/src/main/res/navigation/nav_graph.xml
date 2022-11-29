@@ -18,10 +18,6 @@
      android:name="com.zybooks.todoit.AddTaskFragment"
      android:label="@string/add_task"
      tools:layout="@layout/fragment_addTask">
-     <argument
-        <!I think this is where some work is going to need to be done to create the task and add it back to the list in the main fragment. I also had to
-        make up some names for files that I think we're gonna have to add to make the navigation fragments work and look properly.>
-    />
   </fragment>
 </navigation>
 
