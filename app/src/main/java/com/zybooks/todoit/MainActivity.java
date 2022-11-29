@@ -4,8 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,16 +23,24 @@ public class MainActivity extends AppCompatActivity {
 
 
         mToDoList = new TaskList(this);
+<!--Added necessary fragment navigation code to main, new file is going to be needed to setup the onclicklistener and make it navigate to the add task 
+    view similar to the way the band app moves from the list to the detail fragment-->
+      NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+              .findFragmentById(R.id.nav_host_fragment);
 
-        //sets the on click listener for the fab button; replace the snackbar code with the fab code
-        findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
+      if (navHostFragment != null) {
+         NavController navController = navHostFragment.getNavController();
+         AppBarConfiguration appBarConfig = new AppBarConfiguration.
+                 Builder(navController.getGraph()).build();
+         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
+      }
+   }
+
+   @Override
+   public boolean onSupportNavigateUp() {
+      NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+      return navController.navigateUp() || super.onSupportNavigateUp();
+   }
 
     @Override
     protected void onResume() {
