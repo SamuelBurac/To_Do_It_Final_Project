@@ -20,7 +20,7 @@ public class TaskListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
 
-        // Click listener for the RecyclerView
+        // Click listener for the RecyclerView bob
         View.OnClickListener onClickListener = itemView -> {
 
             // Create fragment arguments containing the selected band ID
