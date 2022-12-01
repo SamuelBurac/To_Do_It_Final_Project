@@ -31,6 +31,7 @@
         tools:layout_editor_absoluteY="656dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:backgroundTint="@color/blueberry_900"
         android:contentDescription="@string/new_task"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
