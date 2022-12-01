@@ -1,64 +1,83 @@
 package com.zybooks.todoit;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TaskListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TaskListFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public TaskListFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment taskListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TaskListFragment newInstance(String param1, String param2) {
-        TaskListFragment fragment = new TaskListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private List<Task> mTasks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_task_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
+
+        // Click listener for the RecyclerView
+        View.OnClickListener onClickListener = itemView -> {
+
+            // Create fragment arguments containing the selected band ID
+            int selectedBandId = (int) itemView.getTag();
+
+        };
+
+        // Send bands to RecyclerView
+        RecyclerView recyclerView = rootView.findViewById(R.id.list_fragment);
+        List<Task> tasks = mTasks;
+        recyclerView.setAdapter(new BandAdapter(tasks, onClickListener));
+
+        return rootView;
+    }
+
+    private class BandAdapter extends RecyclerView.Adapter<BandHolder> {
+
+
+        private final View.OnClickListener mOnClickListener;
+
+        public BandAdapter(List<Task> tasks, View.OnClickListener onClickListener) {
+            mTasks = tasks;
+            mOnClickListener = onClickListener;
+        }
+
+        @NonNull
+        @Override
+        public BandHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+            return new BandHolder(layoutInflater, parent);
+        }
+
+        @Override
+        public void onBindViewHolder(BandHolder holder, int position) {
+            Task task = mTasks.get(position);
+            holder.bind(task);
+            holder.itemView.setTag(task.getId());
+            holder.itemView.setOnClickListener(mOnClickListener);
+        }
+
+        @Override
+        public int getItemCount() {
+            return mTasks.size();
+        }
+    }
+
+    private static class BandHolder extends RecyclerView.ViewHolder {
+
+        private final TextView mNameTextView;
+
+        public BandHolder(LayoutInflater inflater, ViewGroup parent) {
+            super(inflater.inflate(R.layout.list_item_task, parent, false));
+            mNameTextView = itemView.findViewById(R.id.taskText);
+        }
+
+        public void bind(Task task) {
+            mNameTextView.setText(task.getName());
+        }
     }
 }

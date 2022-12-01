@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         mToDoList = new TaskList(this);
-<!--Added necessary fragment navigation code to main, new file is going to be needed to setup the onclicklistener and make it navigate to the add task 
-    view similar to the way the band app moves from the list to the detail fragment-->
+/*Added necessary fragment navigation code to main, new file is going to be needed to setup the onclicklistener and make it navigate to the add task
+    view similar to the way the band app moves from the list to the detail fragment */
       NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
               .findFragmentById(R.id.nav_host_fragment);
 
