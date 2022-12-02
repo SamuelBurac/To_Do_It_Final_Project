@@ -8,17 +8,18 @@
   <fragment
      android:id="@+id/TaskListFragment"
      android:name="com.zybooks.todoit.TaskListFragment"
-     android:label="@string/app_name">
-      <!-- <action
+     tools:layout="@layout/fragment_task_list"
+      android:label="@string/app_name">
+      <action
           android:id="@+id/show_add_task"
-          app:destination="@id/AddTaskFragment" -->
+          app:destination="@+id/AddTask"
       />
   </fragment>
-    <!-- <fragment
+     <fragment
         android:id="@+id/AddTaskFragment"
-        android:name="com.zybooks.todoit.AddTaskFragment"
+        android:name="com.zybooks.todoit.AddTask"
         android:label="@string/add_task"
-         tools:layout="@layout/fragment_task_list">
-     </fragment> -->
+         tools:layout="@layout/fragment_add_task">
+     </fragment>
 </navigation>
 
