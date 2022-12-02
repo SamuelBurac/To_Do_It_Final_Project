@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTaskFragment">
+
+    <TextView
+        android:layout_width="257dp"
+        android:layout_height="50dp"
+        android:labelFor="@id/task_name_edit_text"
+        android:text="New Task Creation"
+        android:textSize="24sp"
+        android:translationX="100dp"
+        android:translationY="10dp" />
+
+    <EditText
+        android:id="@+id/task_name_edit_text"
+        android:layout_width="286dp"
+        android:layout_height="82dp"
+        android:ems="5"
+        android:hint="Type task name here"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:translationY="50dp" />
+
+    <EditText
+        android:id="@+id/task_date_edit_text"
+        android:layout_width="286dp"
+        android:layout_height="82dp"
+        android:ems="5"
+        android:hint="Set the date to complete"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:translationY="130dp" />
+
+    <Button
+        android:id="@+id/add_task_button"
+        android:layout_width="116dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="addTask"
+        android:text="Done"
+        android:translationX="10dp"
+        android:translationY="200dp" />
+</FrameLayout>

@@ -1,13 +1,13 @@
 package com.zybooks.todoit;
-import java.time.*;
+import java.util.Date;
 
 public class Task {
     private int mId;
     private String mName;
-    private LocalDate mDate;
+    private Date mDate;
 
     public Task(){}
-    public Task(int id, String name, LocalDate date) {
+    public Task(int id, String name, Date date) {
         mId = id;
         mName = name;
         mDate = date;
@@ -28,12 +28,12 @@ public class Task {
         this.mName = name;
     }
 
-    public LocalDate getDate(){
+    public Date getDate(){
         return mDate;
     }
 
 
-    public void setDate(LocalDate date){
+    public void setDate(Date date){
         this.mDate = date;
     }
 
