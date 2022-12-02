@@ -1,20 +1,29 @@
 package com.zybooks.todoit;
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class TaskListFragment extends Fragment {
 
-    private List<Task> mTasks;
+    
+    
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,33 +37,34 @@ public class TaskListFragment extends Fragment {
 
         };
 
-        // Send bands to RecyclerView
+
+        // Send tasks to RecyclerView
         RecyclerView recyclerView = rootView.findViewById(R.id.list_fragment);
-        List<Task> tasks = mTasks;
-        recyclerView.setAdapter(new BandAdapter(tasks, onClickListener));
+        List<Task> tasks = TaskList.getInstance(requireContext()).getTasks();
+        recyclerView.setAdapter(new TaskAdapter(tasks, onClickListener));
 
         return rootView;
     }
 
-    private class BandAdapter extends RecyclerView.Adapter<BandHolder> {
-
+    private class TaskAdapter extends RecyclerView.Adapter<TaskHolder> {
+        private final List<Task> mTasks;
 
         private final View.OnClickListener mOnClickListener;
 
-        public BandAdapter(List<Task> tasks, View.OnClickListener onClickListener) {
+        public TaskAdapter(List<Task> tasks, View.OnClickListener onClickListener) {
             mTasks = tasks;
             mOnClickListener = onClickListener;
         }
 
         @NonNull
         @Override
-        public BandHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            return new BandHolder(layoutInflater, parent);
+            return new TaskHolder(layoutInflater, parent);
         }
 
         @Override
-        public void onBindViewHolder(BandHolder holder, int position) {
+        public void onBindViewHolder(TaskHolder holder, int position) {
             Task task = mTasks.get(position);
             holder.bind(task);
             holder.itemView.setTag(task.getId());
@@ -72,17 +82,21 @@ public class TaskListFragment extends Fragment {
         }
     }
 
-    private static class BandHolder extends RecyclerView.ViewHolder {
+    private static class TaskHolder extends RecyclerView.ViewHolder {
 
         private final TextView mNameTextView;
+        private final TextView mDateTextView;
 
-        public BandHolder(LayoutInflater inflater, ViewGroup parent) {
+        public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_task, parent, false));
             mNameTextView = itemView.findViewById(R.id.taskText);
+            mDateTextView = itemView.findViewById(R.id.taskDueDate);
         }
 
         public void bind(Task task) {
             mNameTextView.setText(task.getName());
+            mDateTextView.setText(task.getDate().toString());
         }
+
     }
 }

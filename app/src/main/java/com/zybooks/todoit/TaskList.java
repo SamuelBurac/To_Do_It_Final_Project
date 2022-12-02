@@ -1,19 +1,38 @@
 package com.zybooks.todoit;
 
 import android.content.Context;
-import java.io.*;
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class TaskList {
+    private final static String TAG = "TaskList";
     public static final String FILENAME = "todolist.txt";
     private Context mContext;
+    private static TaskList instance;
     private List<Task> mTasks;
 
+    public static TaskList getInstance(Context context){
+        if(instance == null){
+            instance = new TaskList(context);
+        }
+        return instance;
+    }
 
     public TaskList(Context context) {  // is going to require context like band database
-        mContext = context;
         mTasks = new ArrayList<>();
+        mContext = context;
     }
 
 
@@ -61,8 +80,10 @@ public class TaskList {
 
     public void readFromFile() throws IOException {
 
+
         // Read in list from file in internal storage
         FileInputStream inputStream = mContext.openFileInput(FILENAME);
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             mTasks.clear();
 
