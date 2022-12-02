@@ -17,7 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class TaskList {
-    private final static String TAG = "TaskList";
+
     public static final String FILENAME = "todolist.txt";
     private Context mContext;
     private static TaskList instance;
@@ -83,7 +83,6 @@ public class TaskList {
 
         // Read in list from file in internal storage
         FileInputStream inputStream = mContext.openFileInput(FILENAME);
-
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             mTasks.clear();
 
