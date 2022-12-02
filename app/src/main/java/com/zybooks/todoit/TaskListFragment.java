@@ -63,7 +63,12 @@ public class TaskListFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return mTasks.size();
+            try {
+                return mTasks.size();
+            }
+            catch (Exception e){
+                return 0;
+            }
         }
     }
 

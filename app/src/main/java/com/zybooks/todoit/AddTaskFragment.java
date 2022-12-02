@@ -36,7 +36,10 @@ public class AddTaskFragment extends AppCompatActivity {
 
         //Set user input to variable that can be passed to the new task object.
         String name_of_task = task_name_edit_text.getText().toString();
-        Date date_of_task = (Date) task_date_edit_text.getText();
+        LocalDate date_of_task = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date_of_task = LocalDate.parse(task_date_edit_text.getText().toString());
+        }
 
         //Pass the user input variables to the task object.
         new_task.setName(name_of_task);

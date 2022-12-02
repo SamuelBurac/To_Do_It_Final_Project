@@ -17,7 +17,7 @@
   </fragment>
      <fragment
         android:id="@+id/AddTaskFragment"
-        android:name="com.zybooks.todoit.AddTask"
+        android:name="com.zybooks.todoit.AddTaskFragment"
         android:label="@string/add_task"
          tools:layout="@layout/fragment_add_task">
      </fragment>
