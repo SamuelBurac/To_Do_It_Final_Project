@@ -12,7 +12,7 @@
       android:label="@string/app_name">
       <action
           android:id="@+id/show_add_task"
-          app:destination="@+id/AddTask"
+          app:destination="@+id/AddTaskFragment"
       />
   </fragment>
      <fragment
