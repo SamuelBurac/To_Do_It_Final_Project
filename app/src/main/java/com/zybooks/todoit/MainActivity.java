@@ -1,5 +1,6 @@
 package com.zybooks.todoit;
 
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -94,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
         catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void fab(View view) {
+        System.out.println("BUTTON HAS BEEN CLICKED");
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController.navigate(R.id.add_task_fragment);
     }
 
 
