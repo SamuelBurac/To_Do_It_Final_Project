@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -94,8 +95,9 @@ public class TaskListFragment extends Fragment {
         }
 
         public void bind(Task task) {
+            DateTimeFormatter fr = DateTimeFormatter.ofPattern("dd/MM/YYYY");
             mNameTextView.setText(task.getName());
-            mDateTextView.setText(task.getDate().toString());
+            mDateTextView.setText(task.getDate().format(fr));
         }
 
     }

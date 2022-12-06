@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Task Task2 = new Task(2,"giraffe",lic);
         Task Task3 = new Task(3,"monkey",cal);
         Task Task4 = new Task(4,"zebra",lac);
-        Task Task5 = new Task(5,"go and wash dishes and",lic); // todo Task needs to be able to take a longer length in string size
+        Task Task5 = new Task(5,"go and wash dishes and even evvveeeem longer",lic);
 
         TaskList.getInstance(this).addTask(Task);
         TaskList.getInstance(this).addTask(Task1);
