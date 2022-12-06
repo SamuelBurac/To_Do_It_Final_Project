@@ -1,8 +1,12 @@
 package com.zybooks.todoit;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -21,16 +28,25 @@ import java.util.List;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class TaskListFragment extends Fragment {
 
-    
-    
+
+    private FloatingActionButton fabAddTask;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
+        fabAddTask = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
-        // Click listener for the RecyclerView bob
+        View.OnClickListener FABonClickListener = itemViewFAB -> {
+            //Navigation.findNavController(itemViewFAB).navigate(R.id.show_add_task);
+            Log.d(TAG,"I'm alive");
+        };
+        fabAddTask.setOnClickListener(FABonClickListener);
+
+
+
+        // Click listener for the RecyclerView
         View.OnClickListener onClickListener = itemView -> {
 
             // Create fragment arguments containing the selected band ID

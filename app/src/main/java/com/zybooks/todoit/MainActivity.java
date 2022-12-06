@@ -1,8 +1,11 @@
 package com.zybooks.todoit;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.RequiresApi;
@@ -15,6 +18,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
       NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
               .findFragmentById(R.id.nav_host_fragment);
 
@@ -37,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
          AppBarConfiguration appBarConfig = new AppBarConfiguration.
                  Builder(navController.getGraph()).build();
          NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
+
       }
+
         LocalDate cal = LocalDate.of(2022,6,6);
         LocalDate lac = LocalDate.of(2022,5,17);
         LocalDate lic = LocalDate.of(2022,3,11);
@@ -96,13 +104,5 @@ public class MainActivity extends AppCompatActivity {
             ex.printStackTrace();
         }
     }
-
-    public void fab(View view) {
-        System.out.println("BUTTON HAS BEEN CLICKED");
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        navController.navigate(R.id.add_task_fragment);
-    }
-
-
 }
 
