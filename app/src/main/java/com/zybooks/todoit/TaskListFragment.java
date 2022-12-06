@@ -34,7 +34,7 @@ public class TaskListFragment extends Fragment {
         View.OnClickListener onClickListener = itemView -> {
 
             // Create fragment arguments containing the selected band ID
-            int selectedBandId = (int) itemView.getTag();
+            int selectedTaskId = (int) itemView.getTag();
 
         };
 

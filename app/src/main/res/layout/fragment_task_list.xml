@@ -12,7 +12,7 @@
         android:name="com.zybooks.to_dolist.ListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintTop_toTopOf="parent"
         tools:context="com.zybooks.to_dolist.MainActivity"
@@ -32,8 +32,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="MissingConstraints" />
-        
-   <TextView
+
+    <TextView
         android:id="@+id/taskTitle"
         android:layout_width="250dp"
         android:layout_height="45dp"
@@ -41,17 +41,19 @@
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/list_fragment"
-        app:layout_constraintRight_toLeftOf="@id/dueDate"/>
+        app:layout_constraintRight_toLeftOf="@id/dueDate"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/dueDate"
         android:layout_width="80dp"
         android:layout_height="45dp"
         android:text="Due"
-        android:textStyle="bold"
         android:textSize="35sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/list_fragment"
-        app:layout_constraintRight_toRightOf="@id/list_fragment"/>
+        app:layout_constraintRight_toRightOf="@id/list_fragment"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/checkbox"
@@ -59,6 +61,7 @@
         android:layout_height="35dp"
         app:layout_constraintBottom_toTopOf="@id/list_fragment"
         app:layout_constraintLeft_toLeftOf="@id/list_fragment"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/checkbox_on_background" />
 
 
