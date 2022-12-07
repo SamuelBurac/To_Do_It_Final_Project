@@ -51,6 +51,12 @@ public class TaskList {
                 mTasks.remove(task);
             }
         }
+
+        int i = mTasks.size()-1;
+        for (Task task : this.mTasks){
+            task.setId(i);
+            i--;
+        }
     }
 
     public Task getTask(int taskId){
