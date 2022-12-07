@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
       return navController.navigateUp() || super.onSupportNavigateUp();
    }
 
+
+
     @Override
     protected void onResume() {
         super.onResume();

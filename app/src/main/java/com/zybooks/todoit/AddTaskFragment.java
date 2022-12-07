@@ -1,8 +1,8 @@
 package com.zybooks.todoit;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -10,21 +10,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
-public class AddTaskFragment extends AppCompatActivity {
+public class AddTaskFragment extends Fragment {
+
+    public AddTaskFragment(){
+
+    }
 
     // Assign the widgets to fields
-    private EditText task_name_edit_text = findViewById(R.id.task_name_edit_text);
-    private EditText task_date_edit_text = findViewById(R.id.task_date_edit_text);
+    private EditText mTask_name_edit_text;
+    private EditText mTask_date_edit_text;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View rootView = inflater.inflate(R.layout.fragment_add_task, container, false);
+        return rootView;
 
     }
 
@@ -35,10 +47,10 @@ public class AddTaskFragment extends AppCompatActivity {
         Task new_task = new Task();
 
         //Set user input to variable that can be passed to the new task object.
-        String name_of_task = task_name_edit_text.getText().toString();
+        String name_of_task = mTask_name_edit_text.getText().toString();
         LocalDate date_of_task = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            date_of_task = LocalDate.parse(task_date_edit_text.getText().toString());
+            date_of_task = LocalDate.parse(mTask_date_edit_text.getText().toString());
         }
 
         //Pass the user input variables to the task object.
@@ -46,6 +58,7 @@ public class AddTaskFragment extends AppCompatActivity {
         new_task.setDate(date_of_task);
 
     }
+
 }
 
 

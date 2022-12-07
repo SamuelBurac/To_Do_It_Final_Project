@@ -2,6 +2,8 @@ package com.zybooks.todoit;
 
 import static android.content.ContentValues.TAG;
 
+import static androidx.navigation.Navigation.findNavController;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
@@ -11,9 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,10 +41,11 @@ public class TaskListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
-        fabAddTask = (FloatingActionButton) rootView.findViewById(R.id.fab);
+
+       fabAddTask = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
         View.OnClickListener FABonClickListener = itemViewFAB -> {
-            //Navigation.findNavController(itemViewFAB).navigate(R.id.show_add_task);
+            findNavController(itemViewFAB).navigate(R.id.show_add_task);
             Log.d(TAG,"I'm alive");
         };
         fabAddTask.setOnClickListener(FABonClickListener);
@@ -49,7 +55,6 @@ public class TaskListFragment extends Fragment {
         // Click listener for the RecyclerView
         View.OnClickListener onClickListener = itemView -> {
 
-            // Create fragment arguments containing the selected band ID
             int selectedTaskId = (int) itemView.getTag();
 
         };
@@ -65,7 +70,6 @@ public class TaskListFragment extends Fragment {
 
     private class TaskAdapter extends RecyclerView.Adapter<TaskHolder> {
         private final List<Task> mTasks;
-
         private final View.OnClickListener mOnClickListener;
 
         public TaskAdapter(List<Task> tasks, View.OnClickListener onClickListener) {
