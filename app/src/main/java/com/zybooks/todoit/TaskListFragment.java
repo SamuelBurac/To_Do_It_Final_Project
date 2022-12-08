@@ -46,7 +46,6 @@ public class TaskListFragment extends Fragment {
 
         View.OnClickListener FABonClickListener = itemViewFAB -> {
             findNavController(itemViewFAB).navigate(R.id.show_add_task);
-            Log.d(TAG,"I'm alive");
         };
         fabAddTask.setOnClickListener(FABonClickListener);
 

@@ -72,8 +72,8 @@ public class TaskList {
         mTasks.clear();
     }
 
-    public int getNextId(TaskList curTL) {    // getting the next available ID
-        int nextID = curTL.getTasks().size();
+    public int getNextId() {    // getting the next available ID
+        int nextID = this.mTasks.size();
         return nextID;
     }
 
