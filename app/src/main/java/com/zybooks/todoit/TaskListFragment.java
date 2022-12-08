@@ -114,7 +114,7 @@ public class TaskListFragment extends Fragment {
         }
 
         public void bind(Task task) {
-            DateTimeFormatter fr = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+            DateTimeFormatter fr = DateTimeFormatter.ofPattern("MM/dd/YYYY");
             mNameTextView.setText(task.getName());
             mDateTextView.setText(task.getDate().format(fr));
         }
