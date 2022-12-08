@@ -4,6 +4,9 @@ import static android.content.ContentValues.TAG;
 
 import static androidx.navigation.Navigation.findNavController;
 
+
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
@@ -23,6 +26,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.AsyncListDiffer;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -64,6 +69,7 @@ public class TaskListFragment extends Fragment {
                 e.printStackTrace();
             }
 
+
         };
 
 
@@ -79,9 +85,11 @@ public class TaskListFragment extends Fragment {
         private final List<Task> mTasks;
         private final View.OnClickListener mOnClickListener;
 
+
         public TaskAdapter(List<Task> tasks, View.OnClickListener onClickListener) {
             mTasks = tasks;
             mOnClickListener = onClickListener;
+
         }
 
         @NonNull
@@ -92,12 +100,23 @@ public class TaskListFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(TaskHolder holder, int position) {
+        public void onBindViewHolder(TaskHolder holder, @SuppressLint("RecyclerView") int position) {
             Task task = mTasks.get(position);
+            int taskID = task.getId();
             holder.bind(task);
             holder.mButtonView.setTag(task.getId());
-            holder.mButtonView.setOnClickListener(mOnClickListener);
+            holder.mButtonView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    removeAt(position); //i is your adapter position
+                    }
+            });
 
+        }
+        private void removeAt(int position) {
+            mTasks.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, mTasks.size());
         }
 
         @Override
@@ -116,7 +135,6 @@ public class TaskListFragment extends Fragment {
         private final TextView mNameTextView;
         private final TextView mDateTextView;
         private final ImageButton mButtonView;
-
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_task, parent, false));

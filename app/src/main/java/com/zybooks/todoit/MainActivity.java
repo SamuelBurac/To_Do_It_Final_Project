@@ -2,6 +2,8 @@ package com.zybooks.todoit;
 
 import static android.content.ContentValues.TAG;
 
+
+
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -97,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
         try {
             // Save list for later
             TaskList.getInstance(this).saveToFile();

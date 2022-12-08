@@ -23,6 +23,7 @@ public class TaskList {
     private static TaskList instance;
     private List<Task> mTasks;
 
+
     public static TaskList getInstance(Context context){
         if(instance == null){
             instance = new TaskList(context);
@@ -122,6 +123,8 @@ public class TaskList {
         task.setName(arrOfS[2]);
         return task;
     }
+
+
 
 
 }
