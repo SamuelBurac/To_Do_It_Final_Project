@@ -106,5 +106,10 @@ public class MainActivity extends AppCompatActivity {
             ex.printStackTrace();
         }
     }
+
+    public void addfTask(View view) {
+        System.out.print("TEST");
+    }
+
 }
 
