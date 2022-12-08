@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class AddTaskFragment extends Fragment {
@@ -55,13 +56,17 @@ public class AddTaskFragment extends Fragment {
             //Set user input to variable that can be passed to the new task object.
             String name_of_task = mTask_name_edit_text.getText().toString();
             LocalDate date_of_task = null;
+
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                date_of_task = LocalDate.parse(mTask_date_edit_text.getText().toString());
+                DateTimeFormatter fr = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+                date_of_task = LocalDate.parse(mTask_date_edit_text.getText().toString(),fr);
             }
 
             //Pass the user input variables to the task object.
             new_task.setName(name_of_task);
             new_task.setDate(date_of_task);
+
+            findNavController(v).navigateUp();
         });
 
         return rootView;
