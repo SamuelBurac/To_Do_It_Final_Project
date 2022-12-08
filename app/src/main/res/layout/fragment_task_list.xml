@@ -57,13 +57,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/checkbox"
+        android:id="@+id/imageButton"
         android:layout_width="50dp"
         android:layout_height="35dp"
         app:layout_constraintBottom_toTopOf="@id/list_fragment"
         app:layout_constraintLeft_toLeftOf="@id/list_fragment"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/checkbox_on_background" />
+        app:srcCompat="@android:drawable/checkbox_on_background"
+         />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

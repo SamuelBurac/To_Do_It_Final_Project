@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +57,12 @@ public class TaskListFragment extends Fragment {
         View.OnClickListener onClickListener = itemView -> {
 
             int selectedTaskId = (int) itemView.getTag();
+            TaskList.getInstance(requireContext()).removeTask(selectedTaskId);
+            try {
+                TaskList.getInstance(requireContext()).saveToFile(); //after adding the tasks to the list had to save them to file
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         };
 
@@ -87,8 +95,9 @@ public class TaskListFragment extends Fragment {
         public void onBindViewHolder(TaskHolder holder, int position) {
             Task task = mTasks.get(position);
             holder.bind(task);
-            holder.itemView.setTag(task.getId());
-            holder.itemView.setOnClickListener(mOnClickListener);
+            holder.mButtonView.setTag(task.getId());
+            holder.mButtonView.setOnClickListener(mOnClickListener);
+
         }
 
         @Override
@@ -106,11 +115,14 @@ public class TaskListFragment extends Fragment {
 
         private final TextView mNameTextView;
         private final TextView mDateTextView;
+        private final ImageButton mButtonView;
+
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_task, parent, false));
             mNameTextView = itemView.findViewById(R.id.taskText);
             mDateTextView = itemView.findViewById(R.id.taskDueDate);
+            mButtonView = itemView.findViewById(R.id.taskDone);
         }
 
         public void bind(Task task) {
