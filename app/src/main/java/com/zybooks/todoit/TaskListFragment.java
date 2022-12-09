@@ -43,7 +43,7 @@ public class TaskListFragment extends Fragment {
 
 
     private FloatingActionButton fabAddTask;
-
+    private static List<Integer> removables = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -51,7 +51,7 @@ public class TaskListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
 
-       fabAddTask = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fabAddTask = (FloatingActionButton) rootView.findViewById(R.id.fab);
 
         View.OnClickListener FABonClickListener = itemViewFAB -> {
             findNavController(itemViewFAB).navigate(R.id.show_add_task);
@@ -105,17 +105,41 @@ public class TaskListFragment extends Fragment {
             int taskID = task.getId();
             holder.bind(task);
             holder.mButtonView.setTag(task.getId());
-            holder.mButtonView.setOnClickListener(new View.OnClickListener() {}
+            holder.mButtonView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+
+                    deleteTask(position);
+
+                }
+            });
+
+        }
+        private void deleteTask(int position) {
+
+            mTasks.remove(position);
+
+            notifyItemRemoved(position);
+
+            notifyItemRangeChanged(position, mTasks.size());
+        }
 
         @Override
         public int getItemCount() {
+
             try {
+
                 return mTasks.size();
+
             }
+
             catch (Exception e){
+
                 return 0;
             }
+
+
         }
     }
 
@@ -140,3 +164,5 @@ public class TaskListFragment extends Fragment {
 
     }
 }
+
+
