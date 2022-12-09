@@ -44,12 +44,18 @@ public class TaskList {
     public void addTask(Task task) {
         this.mTasks.add(task);
         Collections.sort(mTasks, Comparator.comparing(Task::getDate));
+
+    }
+
+    public void addTasks(List<Task> Tasks){
+        mTasks = Tasks;
     }
 
     public void removeTask(int taskId) {
         for (Task task : this.mTasks){
             if (task.getId() == taskId){
                 mTasks.remove(task);
+
             }
         }
 

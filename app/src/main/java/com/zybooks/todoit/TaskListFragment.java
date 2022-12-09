@@ -35,6 +35,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -42,6 +43,7 @@ public class TaskListFragment extends Fragment {
 
 
     private FloatingActionButton fabAddTask;
+    private static List<Integer> removables = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -106,7 +108,7 @@ public class TaskListFragment extends Fragment {
             holder.mButtonView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    removeAt(position); //i is your adapter position
+                    removeAt(position);
 
                     }
             });

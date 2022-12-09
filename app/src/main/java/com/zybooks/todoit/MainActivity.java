@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 
 
+
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.navigation.NavController;
@@ -27,7 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public TaskList secondTList = new TaskList(this);
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -66,14 +68,7 @@ public class MainActivity extends AppCompatActivity {
         TaskList.getInstance(this).addTask(Task4);
         TaskList.getInstance(this).addTask(Task5);
         */
-
-        try {
-            TaskListPtTwo.getInstance(this).saveToFile(); //after adding the tasks to the list had to save them to file
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        TaskList.getInstance(this).addTasks(secondTList.getTasks());
 
     }
 
@@ -91,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             // Attempt to load a previously saved list
-            TaskList.getInstance(this).readFromFile();
+            secondTList.readFromFile();
         }
         catch (IOException ex) {
             ex.printStackTrace();
@@ -103,15 +98,12 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         try {
             // Save list for later
-            TaskList.getInstance(this).saveToFile();
+            secondTList.addTasks(TaskList.getInstance(this).getTasks());
+            secondTList.saveToFile();
         }
         catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
-
-    public void addfTask(View view) {
-        System.out.print("TEST");
     }
 
 }

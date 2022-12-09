@@ -73,7 +73,7 @@ public class AddTaskFragment extends Fragment {
                                                   int monthOfYear, int dayOfMonth) {
                                 LocalDate cal = null;
                                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                                    cal = LocalDate.of(year,monthOfYear,dayOfMonth);
+                                    cal = LocalDate.of(year,(monthOfYear + 1),dayOfMonth);
                                 }
                                 String name_of_task = mTask_name_edit_text.getText().toString();
                                 Task Task = new Task(TaskList.getInstance(requireContext()).getNextId(),name_of_task,cal);
