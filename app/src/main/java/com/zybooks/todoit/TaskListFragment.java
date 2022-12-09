@@ -43,7 +43,7 @@ public class TaskListFragment extends Fragment {
 
 
     private FloatingActionButton fabAddTask;
-    private static List<Integer> removables = new ArrayList<>();
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -105,20 +105,8 @@ public class TaskListFragment extends Fragment {
             int taskID = task.getId();
             holder.bind(task);
             holder.mButtonView.setTag(task.getId());
-            holder.mButtonView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    removeAt(position);
+            holder.mButtonView.setOnClickListener(new View.OnClickListener() {}
 
-                    }
-            });
-
-        }
-        private void removeAt(int position) {
-            mTasks.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, mTasks.size());
-        }
 
         @Override
         public int getItemCount() {

@@ -71,13 +71,7 @@ public class AddTaskFragment extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                LocalDate cal = null;
-                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                                    cal = LocalDate.of(year,(monthOfYear + 1),dayOfMonth);
-                                }
-                                String name_of_task = mTask_name_edit_text.getText().toString();
-                                Task Task = new Task(TaskList.getInstance(requireContext()).getNextId(),name_of_task,cal);
-                                TaskList.getInstance(requireContext()).addTask(Task);
+                                //Todo you can use these ^ variables to set up a date object
                             }
                         },
                         // on below line we are passing year,
