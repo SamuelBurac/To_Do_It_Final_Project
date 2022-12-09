@@ -68,8 +68,6 @@ public class TaskListFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
         };
 
 
@@ -109,6 +107,7 @@ public class TaskListFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     removeAt(position); //i is your adapter position
+
                     }
             });
 

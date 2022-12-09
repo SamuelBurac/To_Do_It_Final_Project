@@ -71,7 +71,13 @@ public class AddTaskFragment extends Fragment {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                    //todo set date of task here or set varialble to do it later
+                                LocalDate cal = null;
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                    cal = LocalDate.of(year,monthOfYear,dayOfMonth);
+                                }
+                                String name_of_task = mTask_name_edit_text.getText().toString();
+                                Task Task = new Task(TaskList.getInstance(requireContext()).getNextId(),name_of_task,cal);
+                                TaskList.getInstance(requireContext()).addTask(Task);
                             }
                         },
                         // on below line we are passing year,
@@ -84,19 +90,6 @@ public class AddTaskFragment extends Fragment {
         });
 
         button.setOnClickListener(v -> {
-
-            //New Task object
-            Task new_task = new Task();
-
-            //Set user input to variable that can be passed to the new task object.
-            String name_of_task = mTask_name_edit_text.getText().toString();
-            LocalDate date_of_task = null;
-
-
-
-            //Pass the user input variables to the task object.
-            new_task.setName(name_of_task);
-            new_task.setDate(date_of_task);
 
             findNavController(v).navigateUp(); //goes back to the Task list fragment
         });

@@ -1,6 +1,6 @@
 package com.zybooks.todoit;
 import java.time.LocalDate;
-import java.util.Date;
+
 
 public class Task {
     private int mId;
@@ -46,8 +46,4 @@ public class Task {
         return task;
 
     }
-
-
-
-
 }

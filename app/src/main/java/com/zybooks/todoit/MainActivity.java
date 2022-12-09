@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
          NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
 
       }
-
+        /*
         LocalDate cal = LocalDate.of(2022,6,6);
         LocalDate lac = LocalDate.of(2022,5,17);
         LocalDate lic = LocalDate.of(2022,3,11);
@@ -65,9 +65,10 @@ public class MainActivity extends AppCompatActivity {
         TaskList.getInstance(this).addTask(Task3);
         TaskList.getInstance(this).addTask(Task4);
         TaskList.getInstance(this).addTask(Task5);
+        */
 
         try {
-            TaskList.getInstance(this).saveToFile(); //after adding the tasks to the list had to save them to file
+            TaskListPtTwo.getInstance(this).saveToFile(); //after adding the tasks to the list had to save them to file
         } catch (IOException e) {
             e.printStackTrace();
         }
