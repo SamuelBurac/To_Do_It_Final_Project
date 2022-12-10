@@ -28,6 +28,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -61,6 +62,9 @@ public class TaskListFragment extends Fragment {
         // Send tasks to RecyclerView
         RecyclerView recyclerView = rootView.findViewById(R.id.list_fragment);
         List<Task> tasks = TaskList.getInstance(requireContext()).getTasks();
+        DividerItemDecoration divider = new DividerItemDecoration(recyclerView.getContext(),
+                DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(divider);
         recyclerView.setAdapter(new TaskAdapter(tasks));
 
         return rootView;
