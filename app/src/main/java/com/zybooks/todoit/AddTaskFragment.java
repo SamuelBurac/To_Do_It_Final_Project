@@ -37,11 +37,12 @@ public class AddTaskFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_add_task, container, false);
 
@@ -49,7 +50,7 @@ public class AddTaskFragment extends Fragment {
         Button button = rootView.findViewById(R.id.add_task_button);
         Button calendarB =  rootView.findViewById(R.id.task_date_edit_text);
 
-        //This method is called when the user click the "Done" button.
+
         calendarB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,24 +66,27 @@ public class AddTaskFragment extends Fragment {
 
                 // on below line we are creating a variable for date picker dialog.
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        // on below line we are passing context.
+
                         requireContext(),
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                //Todo you can use these ^ variables to set up a date object
+                                LocalDate cal = null;
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                    cal = LocalDate.of(year,(monthOfYear + 1),dayOfMonth);
+                                }
+                                String name_of_task = mTask_name_edit_text.getText().toString();
+                                Task Task = new Task(TaskList.getInstance(requireContext()).getNextId(),name_of_task,cal);
+                                TaskList.getInstance(requireContext()).addTask(Task);
                             }
                         },
-                        // on below line we are passing year,
-                        // month and day for selected date in our date picker.
                         year, month, day);
-                // at last we are calling show to
-                // display our date picker dialog.
                 datePickerDialog.show();
             }
         });
 
+        //This method is called when the user click the "Done" button.
         button.setOnClickListener(v -> {
 
             findNavController(v).navigateUp(); //goes back to the Task list fragment

@@ -51,45 +51,26 @@ public class TaskListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
 
-       fabAddTask = (FloatingActionButton) rootView.findViewById(R.id.fab);
-
-        View.OnClickListener FABonClickListener = itemViewFAB -> {
-            findNavController(itemViewFAB).navigate(R.id.show_add_task);
-        };
-        fabAddTask.setOnClickListener(FABonClickListener);
-
-
-
-        // Click listener for the RecyclerView
-        View.OnClickListener onClickListener = itemView -> {
-
-            int selectedTaskId = (int) itemView.getTag();
-            TaskList.getInstance(requireContext()).removeTask(selectedTaskId);
-            try {
-                TaskList.getInstance(requireContext()).saveToFile(); //after adding the tasks to the list had to save them to file
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        };
+        //Setting the onClick listener for the Fab to navigate to the other Fragment
+        fabAddTask = (FloatingActionButton) rootView.findViewById(R.id.fab);
+        fabAddTask.setOnClickListener(v-> {
+            findNavController(v).navigate(R.id.show_add_task);
+            });
 
 
         // Send tasks to RecyclerView
         RecyclerView recyclerView = rootView.findViewById(R.id.list_fragment);
         List<Task> tasks = TaskList.getInstance(requireContext()).getTasks();
-        recyclerView.setAdapter(new TaskAdapter(tasks, onClickListener));
+        recyclerView.setAdapter(new TaskAdapter(tasks));
 
         return rootView;
     }
 
     private class TaskAdapter extends RecyclerView.Adapter<TaskHolder> {
         private final List<Task> mTasks;
-        private final View.OnClickListener mOnClickListener;
 
-
-        public TaskAdapter(List<Task> tasks, View.OnClickListener onClickListener) {
+        public TaskAdapter(List<Task> tasks) {
             mTasks = tasks;
-            mOnClickListener = onClickListener;
-
         }
 
         @NonNull
@@ -105,8 +86,21 @@ public class TaskListFragment extends Fragment {
             int taskID = task.getId();
             holder.bind(task);
             holder.mButtonView.setTag(task.getId());
-            holder.mButtonView.setOnClickListener(new View.OnClickListener() {}
+            holder.mButtonView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteTask(position);
 
+                }
+            });
+
+        }
+        //method to remove an item from the recyclerview
+        private void deleteTask(int position) {
+            mTasks.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, mTasks.size());
+        }
 
         @Override
         public int getItemCount() {

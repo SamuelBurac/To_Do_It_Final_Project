@@ -38,7 +38,7 @@ public class Task {
         this.mDate = date;
     }
 
-    @Override
+    @Override//had to override the toString method so that it could save to file
     public String toString() {
         String task = new String();
 

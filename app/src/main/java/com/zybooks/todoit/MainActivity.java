@@ -29,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    //this is used to read and write data to the internal storage for some reason it didn't work otherwise
     public TaskList secondTList = new TaskList(this);
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -50,24 +51,7 @@ public class MainActivity extends AppCompatActivity {
          NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
 
       }
-        /*
-        LocalDate cal = LocalDate.of(2022,6,6);
-        LocalDate lac = LocalDate.of(2022,5,17);
-        LocalDate lic = LocalDate.of(2022,3,11);
-        Task Task = new Task(0,"monkey",cal);
-        Task Task1 = new Task(1,"zebra",lac);
-        Task Task2 = new Task(2,"giraffe",lic);
-        Task Task3 = new Task(3,"monkey",cal);
-        Task Task4 = new Task(4,"zebra",lac);
-        Task Task5 = new Task(5,"go and wash dishes and even evvveeeem longer",lic);
-
-        TaskList.getInstance(this).addTask(Task);
-        TaskList.getInstance(this).addTask(Task1);
-        TaskList.getInstance(this).addTask(Task2);
-        TaskList.getInstance(this).addTask(Task3);
-        TaskList.getInstance(this).addTask(Task4);
-        TaskList.getInstance(this).addTask(Task5);
-        */
+        //transferring tasks from second list to the singleton
         TaskList.getInstance(this).addTasks(secondTList.getTasks());
 
     }
